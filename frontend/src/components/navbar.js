@@ -20,7 +20,7 @@ export default function Navbar() {
             alt="Flowbite Logo"
           />
           <span className="self-center text-xl text-white font-semibold whitespace-nowrap">
-            PassMan
+            PassVault
           </span>
         </Link>
         <div className="flex md:order-2">

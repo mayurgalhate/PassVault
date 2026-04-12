@@ -23,7 +23,7 @@ const Home = () => {
         {/* Text Content */}
         <div className="w-full lg:w-1/2 text-center lg:text-left mb-8 lg:mb-0">
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold mb-6">
-            PassMan
+            PassVault
           </h1>
           <p className="text-gray-300 text-lg sm:text-xl lg:text-2xl mb-8">
             Keep all of your login information safe and secure with our
@@ -50,7 +50,7 @@ const Home = () => {
       <section className="py-16 bg-black">
         <div className="max-w-7xl mx-auto px-12 sm:px-6 text-center">
           <h2 className="text-3xl sm:text-4xl font-bold mb-12">
-            Why Choose PassMan?
+            Why Choose PassVault?
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[

@@ -5,7 +5,7 @@ import { Mail, Lock } from "lucide-react";
 import { toast } from "react-toastify";
 
 export default function Signin({ setAccessToken }) {
-  const URL = "https://passman-backend-seven.vercel.app";
+  const URL = "http://localhost:3300";
   const [user, setUser] = useState({ email: "", password: "" });
   const navigate = useNavigate();
   axios.defaults.withCredentials = true;
@@ -74,8 +74,15 @@ export default function Signin({ setAccessToken }) {
         
         const { data } = err.response;
         
-        if (data && data.msg && typeof data.msg === 'string') {
-          // Handle general error message
+        if (data && data.message && typeof data.message === 'string') {
+          // Handle message field (e.g., "User does not exist")
+          console.log("Displaying error toast:", data.message);
+          toast.error(data.message, {
+            position: "top-right",
+            autoClose: 3000,
+          });
+        } else if (data && data.msg && typeof data.msg === 'string') {
+          // Handle msg field (e.g., "Password Incorrect")
           console.log("Displaying error toast:", data.msg);
           toast.error(data.msg, {
             position: "top-right",

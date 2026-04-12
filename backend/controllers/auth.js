@@ -6,7 +6,7 @@ const client = require("../configs/redis");
 const NodeRSA = require("node-rsa");
 const nodemailer = require("nodemailer");
 const key = new NodeRSA({ b: 1024 });
-const URL = "https://passman-backend-seven.vercel.app";
+const URL = "https://passvault-backend-seven.vercel.app";
 
 // generating accessToken
 const accessTokenGenerator = (user) => {
@@ -42,13 +42,13 @@ exports.signup = async (req, res) => {
     const isExist = await User.findOne({ email: email });
 
     if (isExist) {
-      res.json({
+      return res.status(400).json({
         message: "user already exists",
       });
     } else {
       bcrypt.hash(password, 10, async (err, hash) => {
         if (err) {
-          res.json({
+          return res.status(400).json({
             msg: "err in hashing password",
           });
         } else {
@@ -70,7 +70,7 @@ exports.signup = async (req, res) => {
             httpOnly: true,
           });
 
-          res.status(200).json({ accessToken, refreshToken, privateKey });
+          return res.status(200).json({ accessToken, refreshToken, privateKey });
         }
       });
     }
@@ -80,7 +80,7 @@ exports.signup = async (req, res) => {
         msg: err.msg,
       };
     });
-    res.json({
+    return res.status(400).json({
       errors,
     });
   }
@@ -93,7 +93,7 @@ exports.signin = async (req, res) => {
   if (validationErrors.isEmpty()) {
     const isExist = await User.findOne({ email: email });
     if (!isExist) {
-      res.json({ message: "User does not exist" });
+      return res.status(400).json({ message: "User does not exist" });
     }
     //if user exist than compare password
     //password comes from the user
@@ -101,11 +101,11 @@ exports.signin = async (req, res) => {
     else {
       await bcrypt.compare(password, isExist.password, (err, data) => {
         if (err) {
-          res.json({
+          return res.status(400).json({
             msg: "err in hashing password",
           });
         } else if (!data) {
-          res.json({ msg: "Password Incorrect" });
+          return res.status(400).json({ msg: "Password Incorrect" });
         } else {
           const accessToken = accessTokenGenerator(isExist);
           const refreshToken = refreshTokenGenerator(isExist);
@@ -114,12 +114,12 @@ exports.signin = async (req, res) => {
             expires: new Date(new Date().getTime() + 365 * 24 * 60 * 60 * 1000),
             httpOnly: true,
           });
-          res.json({ accessToken, refreshToken });
+          return res.status(200).json({ accessToken, refreshToken });
         }
       });
     }
   } else {
-    res.json({
+    return res.status(400).json({
       msg: validationErrors,
     });
   }

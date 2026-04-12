@@ -6,7 +6,7 @@ export default function Footer() {
       <footer className="p-4 bg-black shadow md:flex md:items-center md:justify-between md:p-6">
         <div className="flex flex-col md:flex-row items-center justify-between w-full">
           <span className="text-sm text-white sm:text-center mb-4 md:mb-0">
-            © 2023 PassMan™. All Rights Reserved.
+            © 2023 PassVault™. All Rights Reserved.
           </span>
 
           

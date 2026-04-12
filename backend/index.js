@@ -12,10 +12,18 @@ const mongoose = require("mongoose");
 const app = express();
 app.use(cookieParser());
 app.use(express.json());
+
+const allowedOrigins = ["https://passmannn.vercel.app", "http://localhost:3000", "http://localhost:3001"];
 app.use(
   cors({
     credentials: true,
-    origin: "https://passmannn.vercel.app",
+    origin: (origin, callback) => {
+      if (allowedOrigins.includes(origin) || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
   })
 );
 
@@ -31,7 +39,12 @@ const PORT = process.env.PORT || 3300;
 
 mongoose.set("strictQuery", false);
 mongoose
-  .connect(process.env.DB_URL)
+  .connect(process.env.DB_URL, {
+    ssl: true,
+    authSource: "admin",
+    retryWrites: true,
+    w: "majority"
+  })
   .then(() => {
     app.listen(PORT, () => {
       console.log(`server running on port ${PORT}`);

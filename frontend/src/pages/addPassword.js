@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 const AddPassword = () => {
-  const URL = "https://passman-backend-seven.vercel.app";
+  const URL = "http://localhost:3300";
   const [passDetails, setPassDetails] = useState({
     websiteURL: "",
     Title: "",
@@ -100,7 +100,7 @@ const AddPassword = () => {
               value={passDetails.websiteURL}
               onChange={handleChange}
               className="bg-gray-800 border border-gray-600 text-gray-300 text-sm rounded-lg block w-full p-2.5 focus:outline-none focus:ring focus:ring-blue-500"
-              placeholder="Ex: passman.com"
+              placeholder="Ex: passvault.com"
               required
             />
           </div>
@@ -115,7 +115,7 @@ const AddPassword = () => {
               value={passDetails.Title}
               onChange={handleChange}
               className="bg-gray-800 border border-gray-600 text-gray-300 text-sm rounded-lg block w-full p-2.5 focus:outline-none focus:ring focus:ring-blue-500"
-              placeholder="Ex: PassMan"
+              placeholder="Ex: PassVault"
               required
             />
           </div>
@@ -130,7 +130,7 @@ const AddPassword = () => {
               value={passDetails.username}
               onChange={handleChange}
               className="bg-gray-800 border border-gray-600 text-gray-300 text-sm rounded-lg block w-full p-2.5 focus:outline-none focus:ring focus:ring-blue-500"
-              placeholder="Ex: Pass@Man"
+              placeholder="Ex: Pass@Vault"
               required
             />
           </div>
