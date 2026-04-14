@@ -21,7 +21,7 @@ PassVault is a password manager built with the MERN (MongoDB, Express, React, No
 ## 🛠️ Installation
 1. Clone the Repository from Github:
 ```
-https://github.com/mayurgalhate/PassVault.git
+git clone https://github.com/mayurgalhate/PassVault.git
 ```
 2. Install the required packages in the server and client directories:
 ```
